@@ -28,6 +28,11 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Customer: { // root type
+    email: string; // String!
+    id: number; // Int!
+    name?: string | null; // String
+  }
   Query: {};
 }
 
@@ -42,13 +47,25 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Customer: { // field return type
+    email: string; // String!
+    id: number; // Int!
+    name: string | null; // String
+  }
   Query: { // field return type
+    Customer: string | null; // String
     test: boolean | null; // Boolean
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Customer: { // field return type name
+    email: 'String'
+    id: 'Int'
+    name: 'String'
+  }
   Query: { // field return type name
+    Customer: 'String'
     test: 'Boolean'
   }
 }
