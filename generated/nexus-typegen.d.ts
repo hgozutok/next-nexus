@@ -53,7 +53,7 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
   }
   Query: { // field return type
-    Customer: string | null; // String
+    Customer: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     test: boolean | null; // Boolean
   }
 }
@@ -65,7 +65,7 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
   }
   Query: { // field return type name
-    Customer: 'String'
+    Customer: 'Customer'
     test: 'Boolean'
   }
 }

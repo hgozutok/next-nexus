@@ -9,6 +9,6 @@ type Customer {
 }
 
 type Query {
-  Customer: String
+  Customer: [Customer]
   test(bool: Boolean!): Boolean
 }

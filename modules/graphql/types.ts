@@ -45,11 +45,10 @@ export const customerQuery = extendType({
             type: customer,
             //  args: { id: nonNull(arg({ type: 'ID' })) },
             resolve: async (_, __, ctx) => {
+                return await prisma.customer.findMany();
 
-                const customers: Customer[] = await prisma.customer.findMany();
-                prisma.$disconnect();
-                return customers;
             }
+
 
         })
     }
@@ -62,6 +61,6 @@ export const schema = makeSchema({
         testQuery,
 
     ],
-    plugins: [nexusPrisma()],
+    //  plugins: [nexusPrisma()],
 })
 
