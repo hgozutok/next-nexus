@@ -41,7 +41,7 @@ const customer = objectType({
 export const customerQuery = extendType({
     type: 'Query',
     definition(t) {
-        t.list.field('Customer', {
+        t.list.field('Customers', {
             type: customer,
             //  args: { id: nonNull(arg({ type: 'ID' })) },
             resolve: async (_, __, ctx) => {
@@ -53,7 +53,28 @@ export const customerQuery = extendType({
         })
     }
 })
+export const customerByIdQuery = extendType({
+    type: 'Query',
+    definition(t) {
+        t.field('Customer', {
+            type: customer,
+            args: { id: nonNull(arg({ type: 'ID' })) },
+            resolve: async (_, customerId) => {
+                await prisma.customer.findUnique({
+                    where: {
+                        id: Number(customerId)
+                    }
+                }).then(customer => {
+                    return customer;
+                })
 
+
+            }
+
+
+        })
+    }
+})
 export const schema = makeSchema({
     types: [
         customer,
