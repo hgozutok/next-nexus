@@ -9,6 +9,7 @@ type Customer {
 }
 
 type Query {
-  Customer: [Customer]
+  Customer(id: ID!): Customer
+  Customers: [Customer]
   test(bool: Boolean!): Boolean
 }

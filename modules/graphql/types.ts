@@ -60,7 +60,7 @@ export const customerByIdQuery = extendType({
             type: customer,
             args: { id: nonNull(arg({ type: 'ID' })) },
             resolve: async (_, customerId) => {
-                await prisma.customer.findUnique({
+                return await prisma.customer.findUnique({
                     where: {
                         id: Number(customerId)
                     }
