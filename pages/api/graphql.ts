@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { server } from "../../lib/apolloServer";
+import { server } from "../../graphql/apolloServer";
 import { cors } from "../../modules/middleware/cors";
 
 export const config = {

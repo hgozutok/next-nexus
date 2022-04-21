@@ -59,10 +59,10 @@ export const customerByIdQuery = extendType({
         t.field('Customer', {
             type: customer,
             args: { id: nonNull(arg({ type: 'ID' })) },
-            resolve: async (_, customerId) => {
+            resolve: async (_, id) => {
                 return await prisma.customer.findUnique({
                     where: {
-                        id: Number(customerId)
+                        id: Number(id)
                     }
                 }).then(customer => {
                     return customer;
