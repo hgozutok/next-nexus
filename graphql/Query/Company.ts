@@ -9,7 +9,13 @@ export const CompanyList = queryField(
   'companyList', {
   type: nullable(list(Company)),
   resolve: async (root, args, ctx) => {
-    return await prisma.company.findMany();
+    let data = await prisma.company.findMany().then(res => {
+      return res;
+    }).catch(err => {
+      return err;
+    });
+
+    return data;
   }
 }
 )

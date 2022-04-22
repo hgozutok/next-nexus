@@ -15,7 +15,13 @@ export const customerList = queryField('customerList', {
     // },
 
     resolve: async (root, args, ctx) => {
-        return await prisma.customer.findMany();
+        let data = await prisma.customer.findMany().then(res => {
+            return res;
+        }).catch(err => {
+            return err;
+        });
+
+        return data;
 
     }
 
@@ -36,11 +42,17 @@ export const findCustomerById = queryField("findCustomerById", {
 
     resolve: async (root, args, ctx) => {
 
-        return await prisma.company.findUnique({
+        let data = await prisma.company.findUnique({
             where: {
                 id: Number(args.data?.id)
             }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            return err;
         });
+
+        return data;
     }
 });
 
