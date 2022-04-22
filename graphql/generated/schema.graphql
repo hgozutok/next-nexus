@@ -2,14 +2,25 @@
 ### Do not make changes to this file directly
 
 
-type Customer {
-  email: String!
-  id: Int!
+type Company {
+  adress: String
+  id: ID
   name: String
 }
 
+type Customer {
+  email: String
+  id: ID
+  name: String
+}
+
+input CustomerWhereUniqueInput {
+  id: ID!
+}
+
 type Query {
-  Customer(id: ID!): Customer
-  Customers: [Customer]
+  companyList: [Company]
+  customerList: [Customer]
+  findCustomerById(data: CustomerWhereUniqueInput): Customer
   test(bool: Boolean!): Boolean
 }

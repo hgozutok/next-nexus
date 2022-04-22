@@ -14,6 +14,9 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CustomerWhereUniqueInput: { // input type
+    id: string; // ID!
+  }
 }
 
 export interface NexusGenEnums {
@@ -28,9 +31,14 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Company: { // root type
+    adress?: string | null; // String
+    id?: string | null; // ID
+    name?: string | null; // String
+  }
   Customer: { // root type
-    email: string; // String!
-    id: number; // Int!
+    email?: string | null; // String
+    id?: string | null; // ID
     name?: string | null; // String
   }
   Query: {};
@@ -47,35 +55,47 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Company: { // field return type
+    adress: string | null; // String
+    id: string | null; // ID
+    name: string | null; // String
+  }
   Customer: { // field return type
-    email: string; // String!
-    id: number; // Int!
+    email: string | null; // String
+    id: string | null; // ID
     name: string | null; // String
   }
   Query: { // field return type
-    Customer: NexusGenRootTypes['Customer'] | null; // Customer
-    Customers: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
+    companyList: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
+    customerList: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
+    findCustomerById: NexusGenRootTypes['Customer'] | null; // Customer
     test: boolean | null; // Boolean
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Company: { // field return type name
+    adress: 'String'
+    id: 'ID'
+    name: 'String'
+  }
   Customer: { // field return type name
     email: 'String'
-    id: 'Int'
+    id: 'ID'
     name: 'String'
   }
   Query: { // field return type name
-    Customer: 'Customer'
-    Customers: 'Customer'
+    companyList: 'Company'
+    customerList: 'Customer'
+    findCustomerById: 'Customer'
     test: 'Boolean'
   }
 }
 
 export interface NexusGenArgTypes {
   Query: {
-    Customer: { // args
-      id: string; // ID!
+    findCustomerById: { // args
+      data?: NexusGenInputs['CustomerWhereUniqueInput'] | null; // CustomerWhereUniqueInput
     }
     test: { // args
       bool: boolean; // Boolean!
@@ -91,7 +111,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
