@@ -15,9 +15,7 @@ export const customerList = queryField('customerList', {
     // },
 
     resolve: async (root, args, ctx) => {
-        let data = await prisma.customer.findMany().then(res => {
-            return res;
-        }).catch(err => {
+        let data = await prisma.customer.findMany().catch(err => {
             return err;
         });
 
